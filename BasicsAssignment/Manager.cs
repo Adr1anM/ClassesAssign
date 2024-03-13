@@ -35,13 +35,21 @@ namespace BasicsAssignment
             Console.WriteLine($"The manager is working here: {time} months");
         }
 
-        public void AddWorker(string role,Worker worker)
+        public void AddWorker(Worker worker, string role = "Standart")
         {
-            if(!workersRoles.ContainsKey(role))
+            if(worker is not null)
             {
-                workersRoles[role] = new List<Worker>();
+                if (!workersRoles.ContainsKey(role))
+                {
+                    workersRoles[role] = new List<Worker>();
+                }
+
+                workersRoles[role].Add(worker);
             }
-            workersRoles[role].Add(worker);  
+            else
+            {
+               throw new NullReferenceException();  
+            }
         }
 
         public void DeleteWorker(string role ,Worker worker)
@@ -54,7 +62,7 @@ namespace BasicsAssignment
 
         public override void DisplayInfo()
         {
-            base.DisplayInfo();
+            Console.WriteLine($"Manager name: {Name}  Id: {EmployeeId}");
             Console.WriteLine($"Department: {department}");
             if (IsEmpty())
             {

@@ -16,7 +16,7 @@ namespace BasicsAssignment
             set { shift = value; }
         }
 
-        public Worker(string name, int id, string shift) : base(name, id)
+        public Worker(string name, int id, string shift = "NotSet") : base(name, id)
         {
             this.shift = shift;
         }
@@ -29,7 +29,15 @@ namespace BasicsAssignment
 
         public override void Works(int time)
         {
-            Console.WriteLine($"The worker is in shift for {time} ours");
+            if(time is 0) 
+            {
+                Console.WriteLine($"Time worked can not be 0");
+            }
+            else
+            {
+                Console.WriteLine($"The worker is in shift for {time} ours");
+            }
+            
         }
 
         public override void DisplayInfo()
